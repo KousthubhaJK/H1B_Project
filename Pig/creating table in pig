@@ -1,0 +1,11 @@
+h1b = load '/user/hive/warehouse/h1b.db/h1b_final' using PigStorage('\t') as (s_no:chararray,case_status:chararray,employer_name:chararray,soc_name:chararray,job_title:chararray,full_time_position:chararray,prevailing_wage,year,worksite:chararray,longitute:double,latitute:double);
+
+ fil = FILTER h1b by case_status == 'CERTIFIED' or case_status == 'CERTIFIED-WITHDRAWN';
+ dis =foreach fil generate worksite,year;
+ grp2013 = group dis by (worksite,year);
+ cunt2013 = foreach grp2013 generate $0.year,$0.worksite,COUNT(dis.$0) as Visa;
+ yr = group cunt2013 by $0;
+ top5 = foreach yr { sorted = order cunt2013 by Visa desc ; top = limit sorted 5 ; generate flatten(top); };
+
+ dump top5;
+
