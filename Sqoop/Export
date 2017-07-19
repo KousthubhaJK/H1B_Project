@@ -1,0 +1,1 @@
+sqoop export -m 1 --connect jdbc:mysql://localhost/h1b --username "root" --password "password" --table h1b --export-dir /user/hive/warehouse/h1b.db/h1b_final/*
