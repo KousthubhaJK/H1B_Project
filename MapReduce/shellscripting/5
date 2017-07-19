@@ -1,0 +1,2 @@
+hadoop jar q5.jar Q5 /user/hive/warehouse/h1b.db/h1b_final /user/hduser/hadoop/q5output;
+hadoop fs -cat /user/hduser/hadoop/q5output/p*;

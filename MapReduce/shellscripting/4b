@@ -1,0 +1,2 @@
+hadoop jar q4.jar Q4 /user/hive/warehouse/h1b.db/h1b_final /user/hduser/hadoop/q4output;
+hadoop fs -cat /user/hduser/hadoop/q4output/p*;
