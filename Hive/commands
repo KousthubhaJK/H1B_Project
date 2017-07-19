@@ -1,0 +1,114 @@
+
+3)Which industry has the most number of Data Scientist positions?
+
+select soc_name,count(job_title) as jk from H1B_final where job_title == 'DATA SCIENTIST' group by soc_name order by jk;
+
+
+output:-
+
+soc_name	                                        jk
+ACTUARIES	                                        1
+SOFTWARE DEVELOPERS, APPLICATIONS, R&D	                1
+Management Analysts	                                1
+MEDICAL SCIENTISTS, EXCEPT EPIDEMIOLOGISTS	        1
+MATERIALS SCIENTISTS	                                1
+MATERIALS ENGINEERS	                                1
+MANAGEMENT ANALYSTS	                                1
+Life Scientists, All Other	                        1
+Economists	                                        1
+Credit Analysts	                                        1
+COMPUTER SYSTEMS ANALYST	                        1
+COMPUTER OCCUPATIONS, ALL OTHER*	                1
+COMPUTER & INFORMATION RESEARCH SCIENTISTS	        1
+COMPUTER & INFORMATION RESEARCH SCIENTIST	        1
+CLINICAL DATA MANAGERS	                                1
+CIVIL ENGINEERS	                                        1
+BUSINESS INTELLIGENCE ANALYSTS	                        1
+ELECTRICAL ENGINEERS	                                2
+SURVEY RESEARCHERS	                                2
+STATISTICAL ASSISTANTS	                                2
+SALES ENGINEERS	                                        2
+Mathematicians	                                        2
+NA	                                                2
+ENGINEERS, ALL OTHER	                                2
+COMPUTER NETWORK ARCHITECTS	                        3
+INDUSTRIAL-ORGANIZATIONAL PSYCHOLOGISTS	                3
+COMPUTER AND INFORMATION SYSTEMS MANAGERS	        3
+Software Developers, Systems Software	                4
+ECONOMISTS	                                        5
+Database Administrators	                                5
+COMPUTER PROGRAMMERS	                                5
+DATABASE ADMINISTRATORS	                                6
+BIOLOGICAL SCIENTISTS, ALL OTHER	                6
+Computer Systems Analysts	                        6
+MATHEMATICAL TECHNICIANS	                        7
+MARKET RESEARCH ANALYSTS AND MARKETING SPECIALISTS	7
+Software Developers, Applications	                9
+Computer Occupations, All Other	                        11
+FINANCIAL SPECIALISTS, ALL OTHER	                11
+Operations Research Analysts	                        26
+SOFTWARE DEVELOPERS, SYSTEMS SOFTWARE	                37
+Statisticians	                                        37
+Computer and Information Research Scientists	        56
+COMPUTER SYSTEMS ANALYSTS	                        66
+SOFTWARE DEVELOPERS, APPLICATIONS	                79
+MATHEMATICIANS	                                       108
+COMPUTER OCCUPATIONS, ALL OTHER	                       121
+OPERATIONS RESEARCH ANALYSTS	                       253
+COMPUTER AND INFORMATION RESEARCH SCIENTISTS	       333
+STATISTICIANS	                                       415
+
+
+
+
+
+
+
+4) which top 5 empolyers file the most petitions each year?
+
+select count(case_status) as jk,year,employer_name  from H1B_final group by employer_name,year order by jk desc limit 5;
+
+output:
+
+jk	year	employer_name
+33245	2015	INFOSYS LIMITED
+32223	2013	INFOSYS LIMITED
+25352	2016	INFOSYS LIMITED
+23759	2014	INFOSYS LIMITED
+16725	2016	CAPGEMINI AMERICA INC
+
+
+8)Find the average Prevailing Wage for each Job for each Year (take part time and full time separate)
+
+select avg(prevailing_wage),job_title,year from H1B_final group by year,job_title,FULL_TIME_POSITION order by job_title limit 10;
+
+output:
+
+_c0	job_title	year
+NULL	NULL	NULL
+49421.0	"BUSINESS SYSTEM ANALYST	2016
+41808.0	"SALES MANAGER	2012
+83325.0	"TEST" SENIOR SCIENTIST	2013
+28538.0	"TRAIN THE TRAINER" PROGRAM SUPERVISOR	2016
+47382.4	'ACCOUNTANT	2012
+40000.0	'COMPUTER SYSTEMS ANALYSTS	2014
+156354.0	'DIRECTOR OF USER ACQUISITION	2012
+59176.0	'OF COUNSEL' TRANSACTION ATTORNEY	2016
+81494.0	( CONSULTANT) ETL DEVELOPER	2013
+
+
+
+7) Create a bar graph to depict the number of applications for each year.
+
+select count(*),year from H1B_final group by year order by year;
+
+output:-
+
+_c0	year
+358767	2011
+415607	2012
+442114	2013
+519427	2014
+618727	2015
+647803	2016
+
