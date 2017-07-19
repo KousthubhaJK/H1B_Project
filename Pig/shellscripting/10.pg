@@ -1,0 +1,15 @@
+h1b = load '/user/hive/warehouse/h1b.db/h1b_final' using PigStorage('\t') as (s_no:chararray,case_status:chararray,employer_name:chararray,soc_name:chararray,job_title:chararray,full_time_position:chararray,prevailing_wage,year,worksite:chararray,longitute:double,latitute:double);
+
+jk1 = group H1B ALL;
+jk2 = foreach jk1 generate COUNT(H1B.soc_name)as totalApplications;
+recd = foreach H1B generate job_title,case_status;
+fil_succ = FILTER recd by case_status == 'CERTIFIED' or case_status == 'CERTIFIED-WITHDRAWN';
+rec1 = foreach fil_suc generate job_title,case_status;
+groupby = group rec1 by job_title;
+coutofEmpl = foreach groupby generate $0,COUNT(rec1.case_status) as cerftifiedApplications;
+
+k = foreach coutofEmpl generate $0,(cerftifiedApplications/(double)jk2.totalApplications)*100;
+
+ordr = order k by $1 desc;
+lim = LIMIT ordr 10;
+
