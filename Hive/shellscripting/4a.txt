@@ -1,0 +1,2 @@
+select count(case_status) as jk,year,employer_name  from H1B_final group by employer_name,year order by jk desc limit 5;
+

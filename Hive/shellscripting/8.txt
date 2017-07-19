@@ -1,0 +1,2 @@
+select avg(prevailing_wage),job_title,year from H1B_final group by year,job_title,FULL_TIME_POSITION order by job_title limit 10;
+
